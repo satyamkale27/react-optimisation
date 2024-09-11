@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Children, useState } from "react";
 import "./styles.css";
 
 export default function App() {
@@ -9,7 +9,8 @@ export default function App() {
   );
 }
 
-function Test() {
+function Counter({ children }) {
+  // component to optimise the slow component  by children prop //
   const [number, setNumber] = useState(0);
 
   function handelClick() {
@@ -20,15 +21,25 @@ function Test() {
       <h1>Slow react component</h1>
       <button onClick={handelClick}>Increment:{number}</button>
 
-      <Slowcomponent />
+      {children}
     </>
+  );
+}
+
+function Test() {
+  return (
+    <div>
+      <Counter>
+        <Slowcomponent />
+      </Counter>
+    </div>
   );
 }
 
 function Slowcomponent() {
   // slow component simulation //
   const postarr = Array.from(
-    { length: 100000 },
+    { length: 50000 },
     () => "words in my soul loren hits cuts in the heaven to it by ele"
   );
   return (
