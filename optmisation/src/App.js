@@ -1,24 +1,19 @@
-// issue with memo is, in js two object or function that look same are not same //
-//  {} != {} //
-// if i pass the object as prop in memo, //
-// memo will identify that passed object as new object every time, identifying new prop causes rerender and not optimisation in memo //
-//ex:-
-
-import { memo, useState } from "react";
+// usememo //
+import { memo, useMemo, useState } from "react";
 import "./styles.css";
 
 export default function App() {
   const [num, setNum] = useState(0); // to intionally rerender the app component by change in state using button //
 
-  // ******************************** imp note  **************************************** //
-  // propss object is considers as new object at every time, //
-  // propss object is been passed as prop in memoised  slow component //
-  // component is memoised, //
-  //  but it get rerender every time beacuase of the object that is treated new every time, //
-  // that is been passes in memoised slow component  triggering rerender //
-  const propss = {
-    show: true,
-  };
+  // to avoid this oject to treated as new we can use  usememo for optimisation //
+  // it solves the problem of passing new object as prop every time  that triggers rerender //
+
+  const propss = useMemo(() => {
+    return {
+      show: true,
+    };
+  }, []); // it gets render at initial render and result gets stored in cache memory that can be displayed evers time without changing //
+  // using usememo solves problem of treating object new at every time leading to pass new prop every time //
   return (
     <>
       <button onClick={() => setNum((num) => num + 1)}>click:{num}</button>
