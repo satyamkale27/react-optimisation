@@ -17,7 +17,7 @@ export default function App() {
 }
 
 function Test({ show }) {
-  // component to optimise the slow component  by children prop //
+  
   const [number, setNumber] = useState(0);
 
   function handelClick() {
