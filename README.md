@@ -32,7 +32,7 @@ Memoization is an optimization technique to speed up applications by storing the
 
 ## Examples
 
-This section includes practical examples of each optimization technique.
+This section includes practical examples of each optimization technique. [link](https://github.com/satyamkale27/react-optimisation/tree/master/optmisation)
 
 ## Conclusion
 
